@@ -1,11 +1,12 @@
 #include "Bankomat.h"
 #include <iostream>
+#include <sstream>
+#include <string>
 
 
 using namespace std;
 
 void Bankomat::initialize() {
-	number = 0;
 	money_state = 0;
 	minMax = 10;
 	maxMax = 10000;
@@ -16,27 +17,21 @@ void Bankomat::initialize() {
 void Bankomat::giveMoney(int value) {
 	cout << "How many money you want to give?: "; cin >> value;
 	if (value == 500) {
-		money_state += 500;
 		po500++;
 	}
 	else if (value == 200) {
-		value += 200;
 		po200++;
 	}
 	else if (value == 100) {
-		value += 100;
 		po100++;
 	}
 	else if (value == 50) {
-		value += 50;
 		po50++;
 	}
 	else if (value == 20) {
-		value += 20;
 		po20++;
 	}
 	else if (value == 10) {
-		value += 10;
 		po10++ ;
 	}
 	else { cout << "Error, unaccpatable value, please try again" << endl; }
@@ -86,10 +81,24 @@ void Bankomat::takeMoney(int value) {
 	}
 }	
 
-void Bankomat::Display() {
-	cout << "Bankomat number: " << number << endl;
-	cout << "Your money :" << money_state << endl;
-	cout << "Minimum money which you can take: " << minMax << ", maximum money which you can take: " << maxMax << endl;
-
+int Bankomat::calculateMoney() {
+	money_state += 500 * po500;
+	money_state += 200 * po200;
+	money_state += 100 * po100;
+	money_state += 50 * po50;
+	money_state += 20 * po20;
+	money_state += 10 * po10;
+	return money_state;
 }
 
+void Bankomat::Display() {
+	cout << "Your money :" << checkmoneystate() << endl;
+	cout << "Minimum money which you can take: " << minMax << ", maximum money which you can take: " << maxMax << endl;
+}
+
+//string Bankomat::toString() const
+//{
+//	stringstream sout;
+//	sout << "Money state = " << money_state << endl;
+//	return sout.str();
+//}
