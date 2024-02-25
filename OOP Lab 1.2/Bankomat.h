@@ -1,31 +1,25 @@
 #pragma once
-//#include <string>
-
+#include <string>
+using namespace std;
 class Bankomat {
 private:
-	int number = 54636252;
-	int money_state = 0;
-	int minMax = 50;
-	int maxMax = 10000;
+	int atm_id;
+	int current_money;
+	int min_withdrawal;
+	int max_withdrawal;
 
-	int po500, po200, po100, po50, po20, po10;
+	int po500;
+	int po200;
+	int po100;
+	int po50;
+	int po20;
+	int po10;
 
 public:
-	void giveMoney(int value);
-	void takeMoney(int value);
-	void initialize();
-	void Display();
-	int getNumber() const { return number; };
-	int checkmoneystate() const { return money_state; };
-	int calculateMoney();
-
-	/*string toString();*/
-
-	int getPo500() const { return po500; };
-	int getPo200() const { return po200; };
-	int getPo100() const { return po100; };
-	int getPo50() const { return po50; };
-	int getPo20() const { return po20; };
-	int getPo10() const { return po10; };
-
+	Bankomat(int id, int min, int max) : atm_id(id), min_withdrawal(min), max_withdrawal(max), current_money(0),
+		po500(0), po200(0), po100(0), po50(0), po20(0), po10(0) {}
+	void loadMoney(int denominations, int quantity);
+	bool withdrawMoney(int amount);
+	int withdrawHelper(int amount, int denomination, int& quantity);
+	string toString() const;
 };
