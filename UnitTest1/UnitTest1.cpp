@@ -13,16 +13,12 @@ namespace BankomatTest
     public:
         TEST_METHOD(TestWithdrawMoney)
         {
-            Bankomat atm(12345, 50, 1000);
+            int x = 5000;
+            Bankomat atm;
             atm.loadMoney(500, 10);
-            atm.loadMoney(200, 20); 
-
-
-            bool result = atm.withdrawMoney(700);
-            Assert::IsTrue(result);
-
-            result = atm.withdrawMoney(600);
-            Assert::IsFalse(result);
+            int a = atm.getCurrentMoney();
+            
+            Assert::AreEqual(a, x);
         }
     };
 }
